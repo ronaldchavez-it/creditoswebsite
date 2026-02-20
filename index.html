@@ -54,6 +54,14 @@
       .hero img{ width:100%; max-height:38vh; }
       .content{ padding:28px 18px 40px 18px; }
     }
+
+    /* Estilo para ocultar elementos en impresión si quieres */
+    @media print {
+      .hero img { display:none; }
+      .buttons { display:none; }
+      body { background:#fff; }
+      .content { max-width:100%; padding:0; }
+    }
   </style>
 </head>
 
@@ -77,6 +85,8 @@
       <div class="buttons">
         <button type="button" onclick="generarResumen()">Evaluar solicitud</button>
         <button type="button" class="secondary" onclick="limpiar()">Limpiar</button>
+        <button type="button" class="secondary" onclick="imprimir()">Imprimir</button>
+        <button type="button" class="secondary" onclick="guardar()">Guardar como…</button>
       </div>
 
       <div class="result-box" aria-live="polite">
@@ -125,8 +135,24 @@
       document.getElementById("prompt").value = "";
       document.getElementById("resultado").textContent = "Esperando información...";
     }
-  </script>
-</body>
 
+    // NUEVO: Imprimir la página (oculta botones/imagen con @media print)
+    function imprimir() {
+      window.print();
+    }
+
+    // NUEVO: Guardar el resultado como archivo de texto
+    function guardar() {
+      const texto = document.getElementById("resultado").textContent || "";
+      const blob = new Blob([texto], { type: "text/plain;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "evaluacion_credito.txt";
+      document.body.appendChild(a);
+      a.click();
+      URL.revokeObjectURLdy>
 </html>
+
+
+
 
