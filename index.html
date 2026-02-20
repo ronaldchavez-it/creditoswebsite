@@ -55,7 +55,7 @@
       .content{ padding:28px 18px 40px 18px; }
     }
 
-    /* Estilo para ocultar elementos en impresión si quieres */
+    /* Estilo para impresión */
     @media print {
       .hero img { display:none; }
       .buttons { display:none; }
@@ -72,7 +72,7 @@
 
     <!-- Columna derecha: CONTENIDO -->
     <div class="content">
-      <h1>Evaluación Automática de Créditos Internos</h1>
+      <h1>Créditos Internos</h1>
 
       <p class="instructions">
         Ingrese la información de la solicitud de crédito interno. El sistema analizará los datos mediante
@@ -136,12 +136,10 @@
       document.getElementById("resultado").textContent = "Esperando información...";
     }
 
-    // NUEVO: Imprimir la página (oculta botones/imagen con @media print)
     function imprimir() {
       window.print();
     }
 
-    // NUEVO: Guardar el resultado como archivo de texto
     function guardar() {
       const texto = document.getElementById("resultado").textContent || "";
       const blob = new Blob([texto], { type: "text/plain;charset=utf-8" });
@@ -150,7 +148,11 @@
       a.download = "evaluacion_credito.txt";
       document.body.appendChild(a);
       a.click();
-      URL.revokeObjectURLdy>
+      URL.revokeObjectURL(a.href);
+      a.remove();
+    }
+  </script>
+</body>
 </html>
 
 
